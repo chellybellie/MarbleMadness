@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public float speed;
+    public float health;
    
 
 	void Update ()
@@ -23,6 +24,15 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce (Movement * speed);
 
     }
+
+    
+    void PlayerhitPoints()
+        {
+
+
+
+        }
+
 
 }
                                                                                                             
