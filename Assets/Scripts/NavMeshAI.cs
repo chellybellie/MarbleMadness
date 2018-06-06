@@ -9,15 +9,21 @@ public class NavMeshAI : MonoBehaviour {
     public RaycastHit rHit;
     public NavMeshHit hit;
     public EnemyManager em;
+    public PlayerController player;
       
     public bool isWander = false;
     public bool isEngaged = false;
+    public bool inRange = false;
+    public bool attacking;
     public float wanderTimer;
     public float timer;
     public float speed;
     public float searchRadius;
+    public float timeBetweenAttk = 0.05f;
+    public int attackDmg = 10;
     public Vector3 DebugSphere;
     float targetdis;
+
 
 
 
@@ -26,12 +32,20 @@ public class NavMeshAI : MonoBehaviour {
         ai = GetComponent<NavMeshAgent>();
         Target = GameObject.FindWithTag("Player");
         timer = 0;
+        StartCoroutine(Battle());
 	}
-	//void OnDrawGizmos()
- //   {
- //      Gizmos.DrawSphere(DebugSphere, 5);
- //   }
 
+    IEnumerator Battle()
+    {
+        while(true)
+        {
+            if (inRange)
+            {
+                attack();
+            }
+            yield return new WaitForSeconds(3);
+        }
+    }
     // allows Ai to wandernavmesh till playerTarget is found
    public void Wander()
     {
@@ -104,5 +118,32 @@ public class NavMeshAI : MonoBehaviour {
         {
             Engaged();
         }
+
 	}
+    // checks if player is in range of enemy for enemy to attack
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.parent.gameObject == Target)
+        {
+            inRange = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.transform.parent.gameObject == Target)
+        {
+            inRange = false;
+        }
+    }
+
+    void attack ()
+    {
+        if(player.health >= 0)
+        {
+            player.TakeDmg(attackDmg);
+            
+            
+        }
+    }
 }

@@ -42,11 +42,19 @@ MonoBehaviour:
   m_Material_keys:
   - pbDefaultMaterial
   m_Bool_values: 0100010001000000
+<<<<<<< HEAD
   m_Int_values: 000000000000000001000000000000000100000009000000000000000200000002000000
   m_Float_values:
   - 0
   - 0
   - 0.050726302
+=======
+  m_Int_values: 000000000000000002000000000000000100000009000000000000000200000002000000
+  m_Float_values:
+  - 0
+  - 47
+  - 0.43675977
+>>>>>>> d37a31c45b42db50ce410bd09b15a7740e7e8f5c
   - 2.85
   - 40
   m_String_values:
